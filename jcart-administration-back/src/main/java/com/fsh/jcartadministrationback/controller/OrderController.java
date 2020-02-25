@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
 
     @GetMapping("/search")
-    public PageOutDTO<OrderListOutDTO> search(OrderSearchInDTO orderSearchInDTO){
+    public PageOutDTO<OrderListOutDTO> search(OrderSearchInDTO orderSearchInDTO,@RequestParam Integer pageNum){
         return null;
     }
 
