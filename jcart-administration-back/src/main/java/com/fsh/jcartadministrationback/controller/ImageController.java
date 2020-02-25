@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ImageController {
 
     @PostMapping("/upload")
-    public String upload(@RequestParam MultipartFile multipartFile){
+    public String upload(@RequestParam MultipartFile image){
         return null;
     }
 }
