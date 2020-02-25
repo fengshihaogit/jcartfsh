@@ -1,4 +1,4 @@
-package com.fsh.jcartadministrationback.model.out;
+package com.fsh.jcartadministrationback.dto.out;
 
 /**
  * @author Mr.Blake

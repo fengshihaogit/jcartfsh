@@ -1,8 +1,8 @@
 package com.fsh.jcartadministrationback.controller;
 
-import com.fsh.jcartadministrationback.model.in.AdministratorLoginInDTO;
-import com.fsh.jcartadministrationback.model.in.AdministratorUpdateProfileInDTO;
-import com.fsh.jcartadministrationback.model.out.AdministratorGetProfileOutDTO;
+import com.fsh.jcartadministrationback.dto.in.AdministratorLoginInDTO;
+import com.fsh.jcartadministrationback.dto.in.AdministratorUpdateProfileInDTO;
+import com.fsh.jcartadministrationback.dto.out.AdministratorGetProfileOutDTO;
 import org.springframework.web.bind.annotation.*;
 
 /**
