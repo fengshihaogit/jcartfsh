@@ -38,12 +38,10 @@
       #{stockQuantity,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{mainPicUrl,jdbcType=VARCHAR}, 
       #{rewordPoints,jdbcType=INTEGER}, #{sortOrder,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.fsh.jcartadministrationback.po.Product">
+  <insert id="insertSelective" parameterType="com.fsh.jcartadministrationback.po.Product"
+  useGeneratedKeys="true" keyProperty="productId">
     insert into jcart_product
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="productId != null">
-        product_id,
-      </if>
       <if test="productCode != null">
         product_code,
       </if>
@@ -76,9 +74,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="productId != null">
-        #{productId,jdbcType=INTEGER},
-      </if>
       <if test="productCode != null">
         #{productCode,jdbcType=VARCHAR},
       </if>
