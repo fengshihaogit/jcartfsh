@@ -2,6 +2,8 @@ package com.fsh.jcartadministrationback.service;
 
 import com.fsh.jcartadministrationback.dto.in.ProductCreateInDTO;
 import com.fsh.jcartadministrationback.dto.in.ProductUpdateInDTO;
+import com.fsh.jcartadministrationback.dto.out.ProductListOutDTO;
+import com.github.pagehelper.Page;
 
 import java.util.List;
 
@@ -18,4 +20,6 @@ public interface ProductServiceinter {
     void delete (Integer productId);
 
     void batchDelete(List<Integer> productIds);
+
+    Page<ProductListOutDTO> search(Integer pageNum);
 }

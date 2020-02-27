@@ -1,6 +1,8 @@
 package com.fsh.jcartadministrationback.dao;
 
+import com.fsh.jcartadministrationback.dto.out.ProductListOutDTO;
 import com.fsh.jcartadministrationback.po.Product;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -22,4 +24,6 @@ public interface ProductMapper {
 
     //custom
     int batchDelete(@Param("productIds") List<Integer> productIds);
+
+    Page<ProductListOutDTO> search();
 }

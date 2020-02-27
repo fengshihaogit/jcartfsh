@@ -7,6 +7,7 @@ import com.fsh.jcartadministrationback.dto.out.PageOutDTO;
 import com.fsh.jcartadministrationback.dto.out.ProductListOutDTO;
 import com.fsh.jcartadministrationback.dto.out.ProductShowOutDTO;
 import com.fsh.jcartadministrationback.service.ProductServiceinter;
+import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +26,16 @@ public class ProductController {
 
     @GetMapping("/search")
     public PageOutDTO<ProductListOutDTO> search(ProductSearchInDTO productSearchInDTO,
-                                                @RequestParam Integer pageNum){
-        return null;
+                                                @RequestParam(required = false,defaultValue = "1") Integer pageNum){
+        Page<ProductListOutDTO> page = productServiceinter.search(pageNum);
+
+        PageOutDTO<ProductListOutDTO> pageOutDTO = new PageOutDTO<>();
+
+        pageOutDTO.setTotal(page.getTotal());
+        pageOutDTO.setPageSize(page.getPageSize());
+        pageOutDTO.setPageNum(page.getPageNum());
+        pageOutDTO.setList(page);
+        return pageOutDTO;
     }
 
     @GetMapping("/getById")
