@@ -1,6 +1,7 @@
 package com.fsh.jcartadministrationback.service;
 
 import com.fsh.jcartadministrationback.dto.in.ProductCreateInDTO;
+import com.fsh.jcartadministrationback.dto.in.ProductUpdateInDTO;
 
 /**
  * @author Mr.Blake
@@ -9,4 +10,6 @@ import com.fsh.jcartadministrationback.dto.in.ProductCreateInDTO;
 public interface ProductServiceinter {
 
     Integer create(ProductCreateInDTO productCreateInDTO);
+
+    void update(ProductUpdateInDTO productUpdateInDTO);
 }
