@@ -156,4 +156,14 @@
       sort_order = #{sortOrder,jdbcType=INTEGER}
     where product_id = #{productId,jdbcType=INTEGER}
   </update>
+
+<!--custom-->
+  <delete id="batchDelete" >
+    delete from jcart_product
+    where product_id in 
+    <foreach collection="productIds" item="item" index="index" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+
 </mapper>

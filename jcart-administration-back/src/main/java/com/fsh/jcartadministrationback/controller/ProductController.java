@@ -46,12 +46,12 @@ public class ProductController {
 
     @PostMapping("/delete")
     public void delete(@RequestBody Integer productId){
-
+        productServiceinter.delete(productId);
     }
 
     @PostMapping("/batchDelete")
     public void batchDelete(@RequestBody List<Integer> productIds){
-
+        productServiceinter.batchDelete(productIds);
     }
 
 }
