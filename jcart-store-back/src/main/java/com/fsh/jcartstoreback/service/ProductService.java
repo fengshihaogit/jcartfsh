@@ -1,6 +1,8 @@
 package com.fsh.jcartstoreback.service;
 
+import com.fsh.jcartstoreback.dto.out.ProductListOutDTO;
 import com.fsh.jcartstoreback.dto.out.ProductShowOutDTO;
+import com.github.pagehelper.Page;
 
 /**
  * @author Mr.Blake
@@ -9,4 +11,6 @@ import com.fsh.jcartstoreback.dto.out.ProductShowOutDTO;
 public interface ProductService {
 
     ProductShowOutDTO getById (Integer productId);
+
+    Page<ProductListOutDTO> search(Integer pageNum);
 }

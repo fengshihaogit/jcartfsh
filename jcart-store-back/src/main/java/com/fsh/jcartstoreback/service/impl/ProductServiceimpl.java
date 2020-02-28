@@ -3,10 +3,13 @@ package com.fsh.jcartstoreback.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.fsh.jcartstoreback.dao.ProductDetailMapper;
 import com.fsh.jcartstoreback.dao.ProductMapper;
+import com.fsh.jcartstoreback.dto.out.ProductListOutDTO;
 import com.fsh.jcartstoreback.dto.out.ProductShowOutDTO;
 import com.fsh.jcartstoreback.po.Product;
 import com.fsh.jcartstoreback.po.ProductDetail;
 import com.fsh.jcartstoreback.service.ProductService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +50,14 @@ public class ProductServiceimpl implements ProductService {
 
 
         return productShowOutDTO;
+    }
+
+    @Override
+    public Page<ProductListOutDTO> search(Integer pageNum) {
+
+        PageHelper.startPage(pageNum,10);
+        Page<ProductListOutDTO> page = productMapper.search();
+
+        return page;
     }
 }
