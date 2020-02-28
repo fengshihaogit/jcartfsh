@@ -6,6 +6,7 @@ import com.fsh.jcartadministrationback.dao.ProductMapper;
 import com.fsh.jcartadministrationback.dto.in.ProductCreateInDTO;
 import com.fsh.jcartadministrationback.dto.in.ProductUpdateInDTO;
 import com.fsh.jcartadministrationback.dto.out.ProductListOutDTO;
+import com.fsh.jcartadministrationback.dto.out.ProductShowOutDTO;
 import com.fsh.jcartadministrationback.po.Product;
 import com.fsh.jcartadministrationback.po.ProductDetail;
 import com.fsh.jcartadministrationback.service.ProductServiceinter;
@@ -113,6 +114,32 @@ public class ProductServiceImpl implements ProductServiceinter {
 
         Page<ProductListOutDTO> page = productMapper.search();
         return page;
+    }
+
+    @Override
+    public ProductShowOutDTO getById(Integer productId) {
+
+        Product product = productMapper.selectByPrimaryKey(productId);
+        ProductDetail productDetail = productDetailMapper.selectByPrimaryKey(productId);
+
+        ProductShowOutDTO productShowOutDTO = new ProductShowOutDTO();
+        productShowOutDTO.setProductId(productId);
+        productShowOutDTO.setProductCode(product.getProductCode());
+        productShowOutDTO.setProductName(product.getProductName());
+        productShowOutDTO.setPrice(product.getPrice());
+        productShowOutDTO.setDiscount(product.getDiscount());
+        productShowOutDTO.setStatus(product.getStatus());
+        productShowOutDTO.setMainPicUrl(product.getMainPicUrl());
+        productShowOutDTO.setRewordPoints(product.getRewordPoints());
+        productShowOutDTO.setSortOrder(product.getSortOrder());
+        productShowOutDTO.setStockQuantity(product.getStockQuantity());
+
+        productShowOutDTO.setDescription(productDetail.getDescription());
+        String otherPicUrls = productDetail.getOtherPicUrls();
+        List<String> parseArray = JSON.parseArray(otherPicUrls, String.class);
+        productShowOutDTO.setOtherPicUrls(parseArray);
+
+        return productShowOutDTO;
     }
 
 

@@ -40,7 +40,8 @@ public class ProductController {
 
     @GetMapping("/getById")
     public ProductShowOutDTO getById(@RequestParam Integer productId){
-        return null;
+        ProductShowOutDTO productShowOutDTO = productServiceinter.getById(productId);
+        return productShowOutDTO;
     }
 
     @PostMapping("/create")
