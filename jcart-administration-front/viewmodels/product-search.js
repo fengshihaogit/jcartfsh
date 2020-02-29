@@ -9,6 +9,11 @@ var app = new Vue({
         this.searchProduct();
     },
     methods:{
+        handlePageChange(val){
+            console.log("page change");
+            this.pageNum = val;
+            this.searchProduct();
+        },
         searchProduct(){
             axios.get('/product/search', {
                 params: {

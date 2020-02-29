@@ -28,7 +28,7 @@
             </el-table-column>
         </el-table>
 
-        <el-pagination layout="prev, pager, next" :total="pageInfo.total">
+        <el-pagination layout="prev, pager, next" :total="pageInfo.total" @current-page="handlePageChange">
         </el-pagination>
     </div>
 
