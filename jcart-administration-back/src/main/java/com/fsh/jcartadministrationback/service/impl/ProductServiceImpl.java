@@ -34,6 +34,7 @@ public class ProductServiceImpl implements ProductServiceinter {
 
 
     @Override
+    @Transactional
     public Integer create(ProductCreateInDTO productCreateInDTO) {
 
         Product product = new Product();

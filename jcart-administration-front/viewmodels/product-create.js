@@ -7,12 +7,12 @@ var app = new Vue({
         discount: '',
         stockQuantity: '',
         rewordPoints: '',
-        SortOrder: '',
+        sortOrder: '',
         description: '',
-        selectedStatus: '',
+        selectedStatus: 1,
         selectedMainPic: '',
         mainPicUrl: '',
-        selectOtherPics: [],
+        selectdOtherPics: [],
         otherPicUrls: [],
         statuses: [{
             value: 0,
@@ -33,45 +33,11 @@ var app = new Vue({
             this.createProduct();
         },
         handleOnMainChange(val) {
-            console.log('image chang', val);
             this.selectedMainPic = val.raw;
         },
         handleUploadMainClick() {
             console.log('upload main pic click');
             this.uploadMainImage();
-        },
-        handleOnOtherChange(file, fileList) {
-            console.log('fileList', fileList);
-            this.selectedOtherPics = fileList;
-        },
-        handleOnOtherRemove(file, fileList) {
-            console.log('fileList', fileList);
-            this.selectedOtherPics = fileList;
-        },
-        handleUploadOtherClick() {
-            console.log("upload other pic clike");
-            this.uploadOtherImage();
-        },
-        uploadOtherImage() {
-            this.selectOtherPics.forEach(pic => {
-                var formData = new FormData();
-                formData.append("image", pic.raw);
-
-                axios.post('/image/upload', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                })
-                    .then(function (response) {
-                        console.log(response);
-                        var url = response.data;
-                        app.otherPicUrls.push(url);                        
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                        alert('上传失败');
-                    });
-            });
         },
         uploadMainImage() {
             var formData = new FormData();
@@ -92,6 +58,39 @@ var app = new Vue({
                     alert('上传失败');
                 });
         },
+        handleOnOtherChange(file, fileList) {
+            console.log('fileList', fileList);
+            this.selectdOtherPics = fileList;
+        },
+        handleOnOtherRemove(file, fileList) {
+            console.log('fileList', fileList);
+            this.selectdOtherPics = fileList;
+        },
+        handleUploadOtherClick() {
+            console.log("upload other pic clike");
+            this.uploadOtherImage();
+        },
+        uploadOtherImage() {
+            this.selectdOtherPics.forEach(pic => {
+                var formData = new FormData();
+                formData.append("image", pic.raw);
+
+                axios.post('/image/upload', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                    .then(function (response) {
+                        console.log(response);
+                        var url = response.data;
+                        app.otherPicUrls.push(url);                        
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                        alert('上传失败');
+                    });
+            });
+        },
         createProduct() {
             axios.post('/product/create', {
                 productCode: this.productCode,
@@ -99,7 +98,7 @@ var app = new Vue({
                 price: this.price,
                 discount: this.discount,
                 stockQuantity: this.stockQuantity,
-                status: this.status,
+                status: this.selectedStatus,
                 mainPicUrl: this.mainPicUrl,
                 rewordPoints: this.rewordPoints,
                 sortOrder: this.sortOrder,
