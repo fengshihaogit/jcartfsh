@@ -27,9 +27,16 @@ var app = new Vue({
         mainFileList: [],
         otherFileList: []
     },
+    mounted() {
+        console.log('view mounted');
+        tinymce.init({
+            selector: '#mytextarea'
+        });
+    },
     methods: {
         handleCreateClick() {
-            console.log('create view')
+            console.log('create view');
+            this.description = tinyMCE.activeEditor.getContent();
             this.createProduct();
         },
         handleOnMainChange(val) {
@@ -83,7 +90,7 @@ var app = new Vue({
                     .then(function (response) {
                         console.log(response);
                         var url = response.data;
-                        app.otherPicUrls.push(url);                        
+                        app.otherPicUrls.push(url);
                     })
                     .catch(function (error) {
                         console.log(error);
