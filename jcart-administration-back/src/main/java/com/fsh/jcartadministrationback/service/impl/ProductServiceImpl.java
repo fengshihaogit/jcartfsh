@@ -47,9 +47,7 @@ public class ProductServiceImpl implements ProductServiceinter {
         product.setMainPicUrl(productCreateInDTO.getMainPicUrl());
         product.setRewordPoints(productCreateInDTO.getRewordPoints());
         product.setSortOrder(productCreateInDTO.getSortOrder());
-        String description = productCreateInDTO.getDescription();
-        String substring = description.substring(0, Math.min(100, description.length()));
-        product.setProductAbstract(substring);
+        product.setProductAbstract(productCreateInDTO.getProductAbstract());
         productMapper.insertSelective(product);
 
         Integer productId = product.getProductId();
@@ -79,9 +77,7 @@ public class ProductServiceImpl implements ProductServiceinter {
         product.setStatus(productUpdateInDTO.getStatus());
         product.setRewordPoints(productUpdateInDTO.getRewordPoints());
         product.setSortOrder(productUpdateInDTO.getSortOrder());
-        String description = productUpdateInDTO.getDescription();
-        String substring = description.substring(0, Math.min(100, description.length()));
-        product.setProductAbstract(substring);
+        product.setProductAbstract(productUpdateInDTO.getProductAbstract());
 
         productMapper.updateByPrimaryKeySelective(product);
 
@@ -134,6 +130,7 @@ public class ProductServiceImpl implements ProductServiceinter {
         productShowOutDTO.setRewordPoints(product.getRewordPoints());
         productShowOutDTO.setSortOrder(product.getSortOrder());
         productShowOutDTO.setStockQuantity(product.getStockQuantity());
+        productShowOutDTO.setProductAbstract(product.getProductAbstract());
 
         productShowOutDTO.setDescription(productDetail.getDescription());
         String otherPicUrls = productDetail.getOtherPicUrls();
