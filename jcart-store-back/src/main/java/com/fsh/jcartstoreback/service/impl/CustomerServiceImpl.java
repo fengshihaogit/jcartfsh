@@ -1,7 +1,7 @@
 package com.fsh.jcartstoreback.service.impl;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import com.fsh.jcartstoreback.CustomerStatus;
+import com.fsh.jcartstoreback.enumeration.CustomerStatus;
 import com.fsh.jcartstoreback.dao.CustomerMapper;
 import com.fsh.jcartstoreback.dto.in.CustomerRegisterInDTO;
 import com.fsh.jcartstoreback.po.Customer;
@@ -44,5 +44,11 @@ public class CustomerServiceImpl implements CustomerService {
         Integer customerId = customer.getCustomerId();
 
         return customerId;
+    }
+
+    @Override
+    public Customer getByUsername(String username) {
+        Customer customer = customerMapper.selectByUsername(username);
+        return customer;
     }
 }

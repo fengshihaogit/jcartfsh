@@ -1,6 +1,7 @@
 package com.fsh.jcartstoreback.dao;
 
 import com.fsh.jcartstoreback.po.Customer;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -16,4 +17,7 @@ public interface CustomerMapper {
     int updateByPrimaryKeySelective(Customer record);
 
     int updateByPrimaryKey(Customer record);
+
+    //custom
+    Customer selectByUsername(@Param("username") String username);
 }

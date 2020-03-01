@@ -1,6 +1,7 @@
 package com.fsh.jcartstoreback.service;
 
 import com.fsh.jcartstoreback.dto.in.CustomerRegisterInDTO;
+import com.fsh.jcartstoreback.po.Customer;
 
 /**
  * @author Mr.Blake
@@ -9,4 +10,6 @@ import com.fsh.jcartstoreback.dto.in.CustomerRegisterInDTO;
 public interface CustomerService {
 
     Integer register(CustomerRegisterInDTO customerRegisterInDTO);
+
+    Customer getByUsername(String username);
 }

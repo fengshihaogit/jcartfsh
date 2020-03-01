@@ -1,9 +1,15 @@
 package com.fsh.jcartstoreback.controller;
 
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
+import com.fsh.jcartstoreback.constant.ClientExceptionConstant;
 import com.fsh.jcartstoreback.dto.in.*;
 import com.fsh.jcartstoreback.dto.out.CustomerGetProfileOutDTO;
+import com.fsh.jcartstoreback.dto.out.CustomerLoginOutDTO;
+import com.fsh.jcartstoreback.exception.ClientException;
+import com.fsh.jcartstoreback.po.Customer;
 import com.fsh.jcartstoreback.service.CustomerService;
+import com.fsh.jcartstoreback.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +20,9 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    @Autowired
+    private JWTUtil jwtUtil;
+
     @PostMapping("/register")
     public Integer register(@RequestBody CustomerRegisterInDTO customerRegisterInDTO){
 
@@ -23,8 +32,23 @@ public class CustomerController {
     }
 
     @GetMapping("/login")
-    public String login(CustomerLoginInDTO customerLoginInDTO){
-        return null;
+    public CustomerLoginOutDTO login (CustomerLoginInDTO customerLoginInDTO) throws ClientException {
+
+        Customer customer = customerService.getByUsername(customerLoginInDTO.getUsername());
+        if(customer == null){
+            throw new ClientException(ClientExceptionConstant.ADMINISTRATOR_USERNAME_NOT_EXIST_ERRCODE,ClientExceptionConstant.ADMINISTRATOR_USERNAME_NOT_EXIST_ERRMSG);
+        }
+
+        String password = customer.getEncryptedPassword();
+        BCrypt.Result result = BCrypt.verifyer().verify(customerLoginInDTO.getPassword().toCharArray(), password);
+
+        if (result.verified){
+            CustomerLoginOutDTO customerLoginOutDTO = jwtUtil.issueToken(customer);
+            return customerLoginOutDTO;
+        }else {
+            throw new ClientException(ClientExceptionConstant.ADMINISTRATOR_USERNAME_NOT_EXIST_ERRCODE,ClientExceptionConstant.ADMINISTRATOR_USERNAME_NOT_EXIST_ERRMSG);
+        }
+
     }
 
     @GetMapping("/getProfile")

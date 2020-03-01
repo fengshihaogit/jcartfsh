@@ -1,4 +1,4 @@
-package com.fsh.jcartstoreback;
+package com.fsh.jcartstoreback.enumeration;
 
 /**
  * @author Mr.Blake
