@@ -1,10 +1,15 @@
 package com.fsh.jcartstoreback.service.impl;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.alibaba.fastjson.JSON;
+import com.fsh.jcartstoreback.CustomerStatus;
+import com.fsh.jcartstoreback.dao.CustomerMapper;
 import com.fsh.jcartstoreback.dao.ProductDetailMapper;
 import com.fsh.jcartstoreback.dao.ProductMapper;
+import com.fsh.jcartstoreback.dto.in.CustomerRegisterInDTO;
 import com.fsh.jcartstoreback.dto.out.ProductListOutDTO;
 import com.fsh.jcartstoreback.dto.out.ProductShowOutDTO;
+import com.fsh.jcartstoreback.po.Customer;
 import com.fsh.jcartstoreback.po.Product;
 import com.fsh.jcartstoreback.po.ProductDetail;
 import com.fsh.jcartstoreback.service.ProductService;
@@ -13,6 +18,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -60,4 +66,6 @@ public class ProductServiceimpl implements ProductService {
 
         return page;
     }
+
+
 }
