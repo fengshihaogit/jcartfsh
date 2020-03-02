@@ -193,7 +193,7 @@
   </update>
 
   <!--custom-->
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+  <select id="selectByUsername" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from jcart_customer
