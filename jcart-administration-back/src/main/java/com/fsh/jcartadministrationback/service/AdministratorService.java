@@ -9,5 +9,7 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface AdministratorService {
 
+    Administrator getById(Integer administratorId);
+
     Administrator getByUsername(String username);
 }

@@ -18,6 +18,12 @@ public class AdministratorServiceimpl implements AdministratorService {
 
 
     @Override
+    public Administrator getById(Integer administratorId) {
+        Administrator administrator = administratorMapper.selectByPrimaryKey(administratorId);
+        return administrator;
+    }
+
+    @Override
     public Administrator getByUsername(String username) {
         Administrator administrator = administratorMapper.selectByUsername(username);
         return administrator;
