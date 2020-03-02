@@ -2,8 +2,11 @@ package com.fsh.jcartstoreback.util;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.auth0.jwt.interfaces.JWTVerifier;
 import com.fsh.jcartstoreback.dto.out.CustomerLoginOutDTO;
 import com.fsh.jcartstoreback.po.Customer;
+import com.fsh.jcartstoreback.vo.CustomerLoginVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -58,16 +61,16 @@ public class JWTUtil {
         return customerLoginOutDTO;
     }
 
-//    public AdministratorLoginVO verifyToken(String token) {
-//        JWTVerifier verifier = JWT.require(algorithm)
-//                .withIssuer(issuer)
-//                .build();
-//        DecodedJWT jwt;
-//        jwt = verifier.verify(token);
-//
-//        AdministratorLoginVO administratorLoginVO = new AdministratorLoginVO();
-//        administratorLoginVO.setAdministratorId(jwt.getClaim("administratorId").asInt());
-//        administratorLoginVO.setUsername(jwt.getSubject());
-//        return administratorLoginVO;
-//    }
+    public CustomerLoginVO verifyToken(String token) {
+        JWTVerifier verifier = JWT.require(algorithm)
+                .withIssuer(issuer)
+                .build();
+        DecodedJWT jwt;
+        jwt = verifier.verify(token);
+
+        CustomerLoginVO customerLoginVO = new CustomerLoginVO();
+        customerLoginVO.setCustomerId(jwt.getClaim("customerId").asInt());
+        customerLoginVO.setUsername(jwt.getSubject());
+        return customerLoginVO;
+    }
 }
