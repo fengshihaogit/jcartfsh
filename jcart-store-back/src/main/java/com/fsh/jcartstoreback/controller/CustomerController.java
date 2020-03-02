@@ -37,7 +37,7 @@ public class CustomerController {
 
         Customer customer = customerService.getByUsername(customerLoginInDTO.getUsername());
         if(customer == null){
-            throw new ClientException(ClientExceptionConstant.ADMINISTRATOR_USERNAME_NOT_EXIST_ERRCODE,ClientExceptionConstant.ADMINISTRATOR_USERNAME_NOT_EXIST_ERRMSG);
+            throw new ClientException(ClientExceptionConstant.CUSTOMER_USERNAME_NOT_EXIST_ERRCODE, ClientExceptionConstant.CUSTOMER_USERNAME_NOT_EXIST_ERRMSG);
         }
 
         String password = customer.getEncryptedPassword();
@@ -47,7 +47,7 @@ public class CustomerController {
             CustomerLoginOutDTO customerLoginOutDTO = jwtUtil.issueToken(customer);
             return customerLoginOutDTO;
         }else {
-            throw new ClientException(ClientExceptionConstant.ADMINISTRATOR_USERNAME_NOT_EXIST_ERRCODE,ClientExceptionConstant.ADMINISTRATOR_USERNAME_NOT_EXIST_ERRMSG);
+            throw new ClientException(ClientExceptionConstant.CUSTOMER_PASSWORD_INVALID_ERRCODE, ClientExceptionConstant.CUSTOMER_PASSWORD_INVALID_ERRMSG);
         }
 
     }
@@ -70,11 +70,31 @@ public class CustomerController {
     public void updateProfile(@RequestBody CustomerUpdateProfileInDTO customerUpdateProfileInDTO,
                               @RequestAttribute Integer customerId){
 
+        Customer customer = new Customer();
+        customer.setCustomerId(customerId);
+        customer.setRealName(customerUpdateProfileInDTO.getRealName());
+        customer.setMobile(customerUpdateProfileInDTO.getMobile());
+        customer.setEmail(customerUpdateProfileInDTO.getEmail());
+        customerService.update(customer);
     }
 
     @PostMapping("/changePwd")
     public void changePwd(@RequestBody CustomerChangePwdInDTO customerChangePwdInDTO,
-                          @RequestAttribute Integer customerId){
+                          @RequestAttribute Integer customerId) throws ClientException {
+
+        Customer serviceById = customerService.getById(customerId);
+        String encPwdDB = serviceById.getEncryptedPassword();
+        BCrypt.Result result = BCrypt.verifyer().verify(customerChangePwdInDTO.getOriginPwd().toCharArray(), encPwdDB);
+
+        if(result.verified){
+            String newPwd = customerChangePwdInDTO.getNewPwd();
+            String bcryHashString = BCrypt.withDefaults().hashToString(12, newPwd.toCharArray());
+            serviceById.setEncryptedPassword(bcryHashString);
+            customerService.update(serviceById);
+        }else{
+            throw new ClientException(ClientExceptionConstant.CUSTOMER_PASSWORD_INVALID_ERRCODE, ClientExceptionConstant.CUSTOMER_PASSWORD_INVALID_ERRMSG);
+        }
+
 
     }
 
