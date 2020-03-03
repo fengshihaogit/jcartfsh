@@ -5,10 +5,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.ServletException;
 
-/**
- * @author Mr.Blake
- * @create 2020-02-28 14:39
- */
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 public class ClientException extends ServletException {
 

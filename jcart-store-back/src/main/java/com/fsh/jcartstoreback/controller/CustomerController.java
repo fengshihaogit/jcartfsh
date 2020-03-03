@@ -57,7 +57,6 @@ public class CustomerController {
 
         Customer customer = customerService.getById(customerId);
         CustomerGetProfileOutDTO customerGetProfileOutDTO = new CustomerGetProfileOutDTO();
-        customerGetProfileOutDTO.setCustomerId(customer.getCustomerId());
         customerGetProfileOutDTO.setUsername(customer.getUsername());
         customerGetProfileOutDTO.setRealName(customer.getRealName());
         customerGetProfileOutDTO.setMobile(customer.getMobile());

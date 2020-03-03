@@ -17,10 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Set;
 
-/**
- * @author Mr.Blake
- * @create 2020-03-02 23:39
- */
 @Order(2)
 @Component
 public class LoginFilter implements Filter {

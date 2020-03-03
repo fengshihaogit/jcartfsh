@@ -20,6 +20,8 @@ var app = new Vue({
                 .then(function (response) {
                     console.log(response);
                     var dto = response.data;
+                    localStorage['jcarToken'] = dto.token;
+                    localStorage['expireTimestamp'] = dto.expireTimestamp;
                     console.log(dto);
                     alert('登录成功')
                 })
