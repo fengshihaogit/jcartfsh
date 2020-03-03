@@ -1,10 +1,19 @@
 package com.fsh.jcartstoreback.dto.in;
 
 public class AddressUpdateInDTO {
+    private Integer addressId;
     private String receiverName;
     private String receiverMobile;
     private String content;
     private String tag;
+
+    public Integer getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Integer addressId) {
+        this.addressId = addressId;
+    }
 
     public String getReceiverName() {
         return receiverName;
