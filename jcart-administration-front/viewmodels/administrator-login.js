@@ -7,6 +7,7 @@ var app = new Vue({
     methods:{
         handleLoginClick(){
             console.log('login click');
+            this.loginAdministrator();
         },
         loginAdministrator(){
             axios.get('/admininistrator/login', {
