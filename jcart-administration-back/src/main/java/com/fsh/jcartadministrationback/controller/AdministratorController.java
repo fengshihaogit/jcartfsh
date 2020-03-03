@@ -22,6 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/admininistrator")
+@CrossOrigin
 public class AdministratorController {
 
     @Autowired
