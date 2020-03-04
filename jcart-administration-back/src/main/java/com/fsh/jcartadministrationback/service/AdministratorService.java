@@ -1,7 +1,10 @@
 package com.fsh.jcartadministrationback.service;
 
 import com.fsh.jcartadministrationback.po.Administrator;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author Mr.Blake
@@ -13,5 +16,14 @@ public interface AdministratorService {
 
     Administrator getByUsername(String username);
 
+    Integer create (Administrator administrator);
+
     void update (Administrator administrator);
+
+    void delete(Integer administratorId);
+
+    void  batchDelete(List<Integer> administratorIds);
+
+    Page<Administrator> getList(Integer pageNum);
+
 }

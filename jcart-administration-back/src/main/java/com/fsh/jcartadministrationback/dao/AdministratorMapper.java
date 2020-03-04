@@ -1,8 +1,11 @@
 package com.fsh.jcartadministrationback.dao;
 
 import com.fsh.jcartadministrationback.po.Administrator;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface AdministratorMapper {
@@ -21,4 +24,8 @@ public interface AdministratorMapper {
     //custom
 
     Administrator selectByUsername(@Param("username")String username);
+
+    int batchDelete(@Param("administratorIds")List<Integer> administratorIds);
+
+    Page<Administrator> selectList();
 }

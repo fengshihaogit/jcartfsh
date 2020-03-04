@@ -10,7 +10,7 @@ var app = new Vue({
             this.loginAdministrator();
         },
         loginAdministrator(){
-            axios.get('/admininistrator/login', {
+            axios.get('/administrator/login', {
                 params: {
                   username : this.username,
                   password : this.password

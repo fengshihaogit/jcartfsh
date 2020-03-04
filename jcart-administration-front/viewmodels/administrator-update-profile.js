@@ -18,7 +18,7 @@ var app = new Vue({
             this.updateMyPorfile();
         },
         getMyProfile() {
-            axios.get('/admininistrator/getProfile')
+            axios.get('/administrator/getProfile')
                 .then(function (response) {
                    
                     console.log(response);
@@ -36,7 +36,7 @@ var app = new Vue({
                 });
         },
         updateMyPorfile(){
-            axios.post('/admininistrator/updateProfile', {
+            axios.post('/administrator/updateProfile', {
                realName : this.realName,
                email : this.email,
                avatarUrl : this.avatarUrl
