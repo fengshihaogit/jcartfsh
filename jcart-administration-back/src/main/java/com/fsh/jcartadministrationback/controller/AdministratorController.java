@@ -83,7 +83,7 @@ public class AdministratorController {
     }
 
     @GetMapping("/getList")
-    public PageOutDTO<AdministratorListOutDTO> getList(@RequestParam Integer pageNum){
+    public PageOutDTO<AdministratorListOutDTO> getList(@RequestParam(required = false,defaultValue = "1") Integer pageNum){
         Page<Administrator> page = administratorService.getList(pageNum);
         List<AdministratorListOutDTO> administratorListOutDTOS = page.stream().map(administrator -> {
             AdministratorListOutDTO administratorListOutDTO = new AdministratorListOutDTO();

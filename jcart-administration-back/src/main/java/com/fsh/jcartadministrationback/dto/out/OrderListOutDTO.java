@@ -9,7 +9,7 @@ public class OrderListOutDTO {
     private Integer customerId;
     private String customerName;
     private Byte status;
-    private Double totalPirce;
+    private Double totalPrice;
     private Long createTimestamp;
     private Long updateTimestamp;
 
@@ -45,14 +45,6 @@ public class OrderListOutDTO {
         this.status = status;
     }
 
-    public Double getTotalPirce() {
-        return totalPirce;
-    }
-
-    public void setTotalPirce(Double totalPirce) {
-        this.totalPirce = totalPirce;
-    }
-
     public Long getCreateTimestamp() {
         return createTimestamp;
     }
@@ -67,5 +59,13 @@ public class OrderListOutDTO {
 
     public void setUpdateTimestamp(Long updateTimestamp) {
         this.updateTimestamp = updateTimestamp;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }
