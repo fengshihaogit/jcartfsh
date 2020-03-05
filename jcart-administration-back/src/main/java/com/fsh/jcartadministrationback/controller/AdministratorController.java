@@ -78,7 +78,7 @@ public class AdministratorController {
     }
 
     @PostMapping("/resetPwd")
-    public void resetPwd(@RequestBody AdministratorResetPwdInDTO administratorResetPwdInDTO,@RequestAttribute Integer administratorId){
+    public void resetPwd(@RequestBody AdministratorResetPwdInDTO administratorResetPwdInDTO){
 
     }
 
@@ -89,6 +89,7 @@ public class AdministratorController {
             AdministratorListOutDTO administratorListOutDTO = new AdministratorListOutDTO();
             administratorListOutDTO.setAdministratorId(administrator.getAdministratorId());
             administratorListOutDTO.setUsername(administrator.getUsername());
+            administratorListOutDTO.setRealName(administrator.getRealName());
             administratorListOutDTO.setStatus(administrator.getStatus());
             administratorListOutDTO.setCreateTimestamp(administrator.getCreateTime().getTime());
             return administratorListOutDTO;
