@@ -7,10 +7,10 @@ var app = new Vue({
         console.log('view mounted')
 
         var myShoppingCartJson = localStorage['myShoppingCartJson'];
-        this.myShoppingCart =myShoppingCartJson ? JSON.parse(myShoppingCartJson) : []
+        this.myShoppingCart = myShoppingCartJson ? JSON.parse(myShoppingCartJson) : [];
     },
     methods: {
-        handleUpdate(){
+        handleUpdate() {
             console.log('update click')
             localStorage['myShoppingCartJson'] = JSON.stringify(this.myShoppingCart);
             this.$message.success('修改购物车成功')
