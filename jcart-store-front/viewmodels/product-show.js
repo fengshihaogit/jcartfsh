@@ -44,7 +44,7 @@ var app = new Vue({
                 productCode : this.productCode,
                 productName : this.productName,
                 mainPicUrl : this.mainPicUrl,
-                unitPicUrl : this.price,
+                unitPrice : this.price,
                 quantity : this.quantity
             };
             newProduct.totalPrice = this.price * this.quantity;

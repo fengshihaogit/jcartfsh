@@ -31,16 +31,16 @@ public class CustomerController {
     @Autowired
     private JWTUtil jwtUtil;
 
-    @Autowired
+  /*  @Autowired
     private SecureRandom secureRandom;
 
     @Autowired
     private JavaMailSender mailSender;
 
     @Value("$spring.mail.username")
-    private String formEmail;
+    private String fromEmail;*/
 
-    private HashMap<String,String> emailPwdResetCodeMap = new HashMap<>();
+//    private HashMap<String,String> emailPwdResetCodeMap = new HashMap<>();
 
     @PostMapping("/register")
     public Integer register(@RequestBody CustomerRegisterInDTO customerRegisterInDTO){
@@ -112,25 +112,25 @@ public class CustomerController {
             throw new ClientException(ClientExceptionConstant.CUSTOMER_PASSWORD_INVALID_ERRCODE, ClientExceptionConstant.CUSTOMER_PASSWORD_INVALID_ERRMSG);
         }
     }
-    @GetMapping("/getPwdResetCode")
-    public void getPwdResetCode(@RequestParam String email){
+    /*@GetMapping("/getPwdResetCode")
+    public void getPwdResetCode(@RequestParam String email) throws ClientException{
 
         Customer customer = customerService.getByEmail(email);
         if(customer == null){
-            new ClientException(ClientExceptionConstant.CUSTOMER_USERNAME_NOT_EXIST_ERRCODE,ClientExceptionConstant.CUSTOMER_USERNAME_NOT_EXIST_ERRMSG);
+            throw new ClientException(ClientExceptionConstant.CUSTOMER_USERNAME_NOT_EXIST_ERRCODE, ClientExceptionConstant.CUSTOMER_USERNAME_NOT_EXIST_ERRMSG);
         }
         byte[] bytes = secureRandom.generateSeed(3);
         String hex = DatatypeConverter.printHexBinary(bytes);
         SimpleMailMessage message = new SimpleMailMessage();
 
-        message.setFrom(formEmail);
+        message.setFrom(fromEmail);
         message.setTo(email);
-        message.setSubject("jcat重置密码");
+        message.setSubject("jcart重置密码");
         message.setText(hex);
         mailSender.send(message);
-        emailPwdResetCodeMap.put("PwdReseCode"+email,hex);
+        emailPwdResetCodeMap.put("PwdResetCode"+email,hex);
 
-    }
+    }*/
 
     @PostMapping("/resetPwd")
     public void resetPwd(@RequestBody CustomerResetPwdInDTO customerResetPwdInDTO){
