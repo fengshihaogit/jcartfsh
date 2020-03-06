@@ -20,15 +20,15 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
-    @GetMapping("/getAddressByCustomerId")
-    public List<AddressListOutDTO> getAddressByCustomerId(@RequestAttribute Integer customerId){
+    @GetMapping("/getCustomerAddress")
+    public List<AddressListOutDTO> getCustomerAddress(@RequestAttribute Integer customerId){
 
         List<Address> addresses = addressService.getByCustomerId(customerId);
 
         List<AddressListOutDTO> collect = addresses.stream().map(address -> {
             AddressListOutDTO addressListOutDTO = new AddressListOutDTO();
             addressListOutDTO.setAddressId(address.getAddressId());
-            addressListOutDTO.setContent(address.getContent());
+            addressListOutDTO.setTag(address.getTag());
             addressListOutDTO.setReceiverName(address.getReceiverName());
             addressListOutDTO.setReceiverMobile(address.getReceiverMobile());
             addressListOutDTO.setContent(address.getContent());
