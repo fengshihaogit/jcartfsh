@@ -7,7 +7,7 @@ var app = new Vue({
         console.log('view mounted')
 
         var myShoppingCartJson = localStorage['myShoppingCartJson'];
-        this.myShoppingCart = JSON.parse(myShoppingCartJson);
+        this.myShoppingCart =myShoppingCartJson ? JSON.parse(myShoppingCartJson) : []
     },
     methods: {
         handleUpdate(){
