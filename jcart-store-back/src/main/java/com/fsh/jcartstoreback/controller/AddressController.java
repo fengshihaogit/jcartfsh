@@ -3,6 +3,7 @@ package com.fsh.jcartstoreback.controller;
 import com.fsh.jcartstoreback.dto.in.AddressCreateInDTO;
 import com.fsh.jcartstoreback.dto.in.AddressUpdateInDTO;
 import com.fsh.jcartstoreback.dto.out.AddressListOutDTO;
+import com.fsh.jcartstoreback.dto.out.AddressShowOutDTO;
 import com.fsh.jcartstoreback.po.Address;
 import com.fsh.jcartstoreback.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,21 @@ public class AddressController {
         return addressId;
     }
 
+    @GetMapping("getById")
+    public AddressShowOutDTO getById(@RequestParam Integer addressId){
+
+        Address address = addressService.getById(addressId);
+
+        AddressShowOutDTO addressShowOutDTO = new AddressShowOutDTO();
+        addressShowOutDTO.setAddressId(address.getAddressId());
+        addressShowOutDTO.setTag(address.getTag());
+        addressShowOutDTO.setReceiverName(address.getReceiverName());
+        addressShowOutDTO.setReceiverMobile(address.getReceiverMobile());
+        addressShowOutDTO.setContent(address.getContent());
+
+        return addressShowOutDTO;
+    }
+
     @PostMapping("/update")
     public void update(@RequestBody AddressUpdateInDTO addressUpdateInDTO,
                        @RequestAttribute Integer customerId){
@@ -61,10 +77,11 @@ public class AddressController {
         address.setReceiverName(addressUpdateInDTO.getReceiverName());
         address.setReceiverMobile(addressUpdateInDTO.getReceiverMobile());
         address.setContent(addressUpdateInDTO.getContent());
+        address.setTag(addressUpdateInDTO.getTag());
         addressService.update(address);
     }
 
-    @PostMapping
+    @PostMapping("delete")
     public void delete(@RequestBody Integer addressId){
             addressService.delete(addressId);
     }

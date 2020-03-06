@@ -20,6 +20,14 @@ public class AddressServiceimpl implements AddressService {
 
 
     @Override
+    public Address getById(Integer addressId) {
+
+        Address address = addressMapper.selectByPrimaryKey(addressId);
+
+        return address;
+    }
+
+    @Override
     public List<Address> getByCustomerId(Integer customerId) {
         List<Address> address = addressMapper.selectByCustomerId(customerId);
         return address;
