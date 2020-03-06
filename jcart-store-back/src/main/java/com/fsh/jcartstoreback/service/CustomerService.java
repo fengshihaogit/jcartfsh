@@ -2,6 +2,7 @@ package com.fsh.jcartstoreback.service;
 
 import com.fsh.jcartstoreback.dto.in.CustomerRegisterInDTO;
 import com.fsh.jcartstoreback.po.Customer;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author Mr.Blake
@@ -14,6 +15,8 @@ public interface CustomerService {
     Customer getByUsername(String username);
 
     Customer getById(Integer customerId);
+
+    Customer getByEmail(String email);
 
     void update(Customer customer);
 }
