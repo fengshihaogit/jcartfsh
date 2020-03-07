@@ -5,7 +5,7 @@ var app = new Vue({
     },
     mounted() {
         console.log('view mounted')
-
+        Cookies.set('testname','testvalue',{expires:7})
         var myShoppingCartJson = localStorage['myShoppingCartJson'];
         this.myShoppingCart = myShoppingCartJson ? JSON.parse(myShoppingCartJson) : [];
     },
