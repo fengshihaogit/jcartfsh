@@ -46,7 +46,8 @@ var app = new Vue({
                 console.log('cart product exist');
                 var originQuantity = parseInt(cartProduct.quantity);
 
-                cartProduct.quantity = originQuantity + this.quantity;
+                var addQuantity = parseInt(this.quantity);
+                cartProduct.quantity = originQuantity + addQuantity;
             } else {
                 cartProduct = {
                     productId: this.productId,
@@ -56,9 +57,9 @@ var app = new Vue({
                     unitPrice: this.price,
                     quantity: this.quantity
                 };
-               
+
                 this.myShoppingCart.push(cartProduct);
-               
+
             }
             localStorage['myShoppingCartJson'] = JSON.stringify(this.myShoppingCart);
             this.$message.success('添加购物车成功')
