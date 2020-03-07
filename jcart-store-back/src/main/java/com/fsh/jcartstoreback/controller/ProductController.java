@@ -35,7 +35,7 @@ public class ProductController {
 
     @GetMapping("/getById")
     public ProductShowOutDTO getById(@RequestParam Integer productId){
-        ProductShowOutDTO productServiceById = productService.getById(productId);
+        ProductShowOutDTO productServiceById = productService.getshowById(productId);
         return productServiceById;
     }
 
