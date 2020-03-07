@@ -3,6 +3,18 @@ var app = new Vue({
     data: {
         myShoppingCart: []
     },
+    computed:{
+        totalPrice(){
+            var subTotalPrice = this.myShoppingCart.map(p => {
+                return p.unitPrice * p.quantity;
+            });
+
+            var totalPrice = subTotalPrice.reduce((a,b) => a + b,0);
+            var totalPriceStr = totalPrice.toFixed(2);
+            totalPrice = parseFloat(totalPriceStr);
+            return totalPrice;
+        }
+    },
     mounted() {
         console.log('view mounted')
 
