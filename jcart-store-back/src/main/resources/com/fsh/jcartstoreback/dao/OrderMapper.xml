@@ -115,6 +115,6 @@
     select
     <include refid="Base_Column_List" />
     from jcart_order
-    where customer_id = #{customer_id}
+    where customer_id = #{customerId}
   </select>
 </mapper>
