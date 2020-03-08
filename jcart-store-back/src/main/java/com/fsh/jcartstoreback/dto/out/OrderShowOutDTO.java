@@ -1,5 +1,7 @@
 package com.fsh.jcartstoreback.dto.out;
 
+import com.fsh.jcartstoreback.vo.OrderProductVO;
+
 import java.util.List;
 
 public class OrderShowOutDTO {
@@ -16,7 +18,7 @@ public class OrderShowOutDTO {
     private String invoiceAddress;
     private Double invoicePrice;
     private String comment;
-    private List<OrderProductOutDTO> orderProducts;
+    private List<OrderProductVO> orderProducts;
     private List<OrderHistoryListOutDTO> orderHistories;
 
     public Long getOrderId() {
@@ -123,11 +125,11 @@ public class OrderShowOutDTO {
         this.comment = comment;
     }
 
-    public List<OrderProductOutDTO> getOrderProducts() {
+    public List<OrderProductVO> getOrderProducts() {
         return orderProducts;
     }
 
-    public void setOrderProducts(List<OrderProductOutDTO> orderProducts) {
+    public void setOrderProducts(List<OrderProductVO> orderProducts) {
         this.orderProducts = orderProducts;
     }
 

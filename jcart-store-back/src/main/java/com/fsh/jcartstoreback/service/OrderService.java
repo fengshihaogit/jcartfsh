@@ -1,6 +1,7 @@
 package com.fsh.jcartstoreback.service;
 
 import com.fsh.jcartstoreback.dto.in.OrderCheckoutInDTO;
+import com.fsh.jcartstoreback.dto.out.OrderShowOutDTO;
 import com.fsh.jcartstoreback.po.Order;
 import com.github.pagehelper.Page;
 
@@ -14,4 +15,6 @@ public interface OrderService {
     Long checkout(OrderCheckoutInDTO orderCheckoutInDTO,Integer customerId);
 
     Page<Order> getByCustomerId(Integer pageNum,Integer customerId);
+
+    OrderShowOutDTO getById(Long orderId);
 }
