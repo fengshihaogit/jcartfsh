@@ -6,7 +6,7 @@ var app = new Vue({
     computed:{
         totalPrice(){
             var subTotalPrice = this.myShoppingCart.map(p => {
-                return p.unitPrice * p.quantity;
+                return p.unitPrice * p.discount * p.quantity;
             });
 
             var totalPrice = subTotalPrice.reduce((a,b) => a + b,0);
