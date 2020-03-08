@@ -109,4 +109,12 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where order_id = #{orderId,jdbcType=BIGINT}
   </update>
+
+  <!--custom-->
+  <select id="selectByCustomerId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jcart_order
+    where customer_id = #{customer_id}
+  </select>
 </mapper>

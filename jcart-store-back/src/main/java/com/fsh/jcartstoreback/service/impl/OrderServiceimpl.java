@@ -14,6 +14,8 @@ import com.fsh.jcartstoreback.service.AddressService;
 import com.fsh.jcartstoreback.service.OrderService;
 import com.fsh.jcartstoreback.service.ProductService;
 import com.fsh.jcartstoreback.vo.OrderProductVO;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -103,5 +105,13 @@ public class OrderServiceimpl implements OrderService {
 
         orderDetailMapper.insertSelective(orderDetail);
         return orderId;
+    }
+
+    @Override
+    public Page<Order> getByCustomerId(Integer pageNum, Integer customerId) {
+
+        PageHelper.startPage(pageNum,10);
+        Page<Order> orders = orderMapper.selectByCustomerId(customerId);
+        return orders;
     }
 }
