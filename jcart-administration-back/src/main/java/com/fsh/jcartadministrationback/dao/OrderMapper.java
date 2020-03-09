@@ -1,7 +1,11 @@
 package com.fsh.jcartadministrationback.dao;
 
+import com.fsh.jcartadministrationback.dto.out.OrderListOutDTO;
 import com.fsh.jcartadministrationback.po.Order;
+import com.github.pagehelper.Page;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface OrderMapper {
     int deleteByPrimaryKey(Long orderId);
 
@@ -14,4 +18,8 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+    //custom
+
+    Page<OrderListOutDTO> search();
 }

@@ -1,5 +1,9 @@
 package com.fsh.jcartadministrationback.dto.out;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.Date;
+
 /**
  * @author Mr.Blake
  * @create 2020-02-25 22:42
@@ -10,16 +14,13 @@ public class OrderListOutDTO {
     private String customerName;
     private Byte status;
     private Double totalPrice;
+    @JsonIgnore
+    private Date createTime;
     private Long createTimestamp;
+    @JsonIgnore
+    private Date updateTime;
     private Long updateTimestamp;
 
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
 
     public Integer getCustomerId() {
         return customerId;
@@ -37,6 +38,14 @@ public class OrderListOutDTO {
         this.customerName = customerName;
     }
 
+    public Long getCreateTimestamp() {
+        return this.createTime == null ? null : this.createTime.getTime();
+    }
+
+    public Long getUpdateTimestamp() {
+        return this.updateTime == null ? null : this.updateTime.getTime();
+    }
+
     public Byte getStatus() {
         return status;
     }
@@ -45,20 +54,28 @@ public class OrderListOutDTO {
         this.status = status;
     }
 
-    public Long getCreateTimestamp() {
-        return createTimestamp;
+    public Long getOrderId() {
+        return orderId;
     }
 
-    public void setCreateTimestamp(Long createTimestamp) {
-        this.createTimestamp = createTimestamp;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
-    public Long getUpdateTimestamp() {
-        return updateTimestamp;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setUpdateTimestamp(Long updateTimestamp) {
-        this.updateTimestamp = updateTimestamp;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public Double getTotalPrice() {
