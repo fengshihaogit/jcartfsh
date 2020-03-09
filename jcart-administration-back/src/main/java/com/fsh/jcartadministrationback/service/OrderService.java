@@ -1,6 +1,7 @@
 package com.fsh.jcartadministrationback.service;
 
 import com.fsh.jcartadministrationback.dto.out.OrderListOutDTO;
+import com.fsh.jcartadministrationback.dto.out.OrderShowOutDTO;
 import com.github.pagehelper.Page;
 
 /**
@@ -10,4 +11,6 @@ import com.github.pagehelper.Page;
 public interface OrderService {
 
     Page<OrderListOutDTO> search(Integer pageNum);
+
+    OrderShowOutDTO getById(Long orderId);
 }
