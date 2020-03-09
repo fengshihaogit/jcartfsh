@@ -25,7 +25,7 @@ public class OrderHistoryController {
     @GetMapping("/getListByOrderId")
     public List<OrderHistoryListOutDTO> getListByOrderId(@RequestParam Long orderId){
 
-        List<OrderHistory> orderHistories = orderHistoryService.getByOrderId(orderId);
+      List<OrderHistory> orderHistories = orderHistoryService.getByOrderId(orderId);
 
         List<OrderHistoryListOutDTO> orderHistoryListOutDTOS = orderHistories.stream().map(orderHistory -> {
             OrderHistoryListOutDTO orderHistoryListOutDTO = new OrderHistoryListOutDTO();

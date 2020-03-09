@@ -23,6 +23,4 @@ public interface OrderHistoryMapper {
     //custom
 
     List<OrderHistory> selectByOrderId(@Param("orderId")Long orderId);
-
-
 }
