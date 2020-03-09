@@ -1,16 +1,23 @@
 package com.fsh.jcartadministrationback.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.fsh.jcartadministrationback.dao.CustomerMapper;
 import com.fsh.jcartadministrationback.dao.OrderDetailMapper;
 import com.fsh.jcartadministrationback.dao.OrderMapper;
 import com.fsh.jcartadministrationback.dto.out.OrderListOutDTO;
 import com.fsh.jcartadministrationback.dto.out.OrderShowOutDTO;
+import com.fsh.jcartadministrationback.po.Customer;
 import com.fsh.jcartadministrationback.po.Order;
 import com.fsh.jcartadministrationback.po.OrderDetail;
+import com.fsh.jcartadministrationback.service.CustomerService;
 import com.fsh.jcartadministrationback.service.OrderService;
+import com.fsh.jcartadministrationback.vo.OrderProductVo;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author Mr.Blake
@@ -24,6 +31,9 @@ public class OrderServiceimpl implements OrderService {
 
     @Autowired
     private OrderDetailMapper orderDetailMapper;
+
+    @Autowired
+    private CustomerService customerService;
 
 
     @Override
@@ -43,6 +53,25 @@ public class OrderServiceimpl implements OrderService {
         OrderShowOutDTO orderShowOutDTO = new OrderShowOutDTO();
         orderShowOutDTO.setOrderId(orderId);
         orderShowOutDTO.setCustomerId(order.getCustomerId());
-        return null;
+        Customer customer = customerService.getById(order.getCustomerId());
+        orderShowOutDTO.setCustomerName(customer.getRealName());
+        orderShowOutDTO.setStatus(order.getStatus());
+        orderShowOutDTO.setTotalPrice(order.getTotalPrice());
+        orderShowOutDTO.setRewordPoints(order.getRewordPoints());
+        orderShowOutDTO.setCreateTimestamp(order.getCreateTime().getTime());
+        orderShowOutDTO.setUpdateTimestamp(order.getUpdateTime().getTime());
+
+        orderShowOutDTO.setShipMethod(orderDetail.getShipMethod());
+        orderShowOutDTO.setShipAddress(orderDetail.getShipAddress());
+        orderShowOutDTO.setShipPrice(orderDetail.getShipPrice());
+        orderShowOutDTO.setPayMethod(orderDetail.getPayMethod());
+        orderShowOutDTO.setInvoiceAddress(orderDetail.getInvoiceAddress());
+        orderShowOutDTO.setInvoicePrice(orderDetail.getInvoicePrice());
+        orderShowOutDTO.setComment(orderDetail.getComment());
+
+        List<OrderProductVo> orderProductVOS = JSON.parseArray(orderDetail.getOrderProducts(), OrderProductVo.class);
+        orderShowOutDTO.setOrderProducts(orderProductVOS);
+
+        return orderShowOutDTO;
     }
 }
