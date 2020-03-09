@@ -1,6 +1,7 @@
 package com.fsh.jcartadministrationback.controller;
 
 import com.fsh.jcartadministrationback.dto.in.CustomerSearchDTO;
+import com.fsh.jcartadministrationback.dto.in.CustomerSetStatusInDTO;
 import com.fsh.jcartadministrationback.dto.out.CustomerListOutDTO;
 import com.fsh.jcartadministrationback.dto.out.CustomerShowOutDTO;
 import com.fsh.jcartadministrationback.dto.out.PageOutDTO;
@@ -80,8 +81,8 @@ public class CustomerController {
         return customerShowOutDTO;
     }
 
-    @PostMapping("/disable")
-    public void disable(@RequestParam Integer customerId){
-
+    @PostMapping("setStatus")
+    public void setStatus(@RequestBody CustomerSetStatusInDTO customerSetStatusInDTO){
+            customerService.setStatus(customerSetStatusInDTO);
     }
 }

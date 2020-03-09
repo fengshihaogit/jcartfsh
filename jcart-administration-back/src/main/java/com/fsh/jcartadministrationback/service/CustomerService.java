@@ -1,5 +1,6 @@
 package com.fsh.jcartadministrationback.service;
 
+import com.fsh.jcartadministrationback.dto.in.CustomerSetStatusInDTO;
 import com.fsh.jcartadministrationback.po.Customer;
 import com.github.pagehelper.Page;
 
@@ -12,4 +13,6 @@ public interface CustomerService {
     Page<Customer> search(Integer pageNum);
 
     Customer getById(Integer customerId);
+
+    void setStatus(CustomerSetStatusInDTO customerSetStatusInDTO);
 }
