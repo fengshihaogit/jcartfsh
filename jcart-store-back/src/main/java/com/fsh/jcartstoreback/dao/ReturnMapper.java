@@ -1,7 +1,9 @@
 package com.fsh.jcartstoreback.dao;
 
 import com.fsh.jcartstoreback.po.Return;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ReturnMapper {
     int deleteByPrimaryKey(Integer returnId);
 
