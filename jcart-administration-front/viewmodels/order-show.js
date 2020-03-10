@@ -111,6 +111,7 @@ var app = new Vue({
                     app.createHistoryOrderStatus = '';
                     app.createHistoryCustomerNotified = false;
                     app.createHistoryComment = '';
+                    app.getOrderById();
                     app.getHistoryByOrderId();
                 })
                 .catch(function (error) {
