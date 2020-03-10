@@ -1,11 +1,15 @@
 package com.fsh.jcartadministrationback.service.impl;
 
 import com.fsh.jcartadministrationback.dao.OrderHistoryMapper;
+import com.fsh.jcartadministrationback.po.Order;
 import com.fsh.jcartadministrationback.po.OrderHistory;
 import com.fsh.jcartadministrationback.service.OrderHistoryService;
+import com.fsh.jcartadministrationback.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +22,8 @@ public class OrderHistoryServiceimpl implements OrderHistoryService {
     @Autowired
     private OrderHistoryMapper orderHistoryMapper;
 
+    @Autowired
+    private OrderService orderService;
 
     @Override
     public List<OrderHistory> getByOrderId(Long orderId) {
@@ -27,8 +33,14 @@ public class OrderHistoryServiceimpl implements OrderHistoryService {
     }
 
     @Override
+    @Transactional
     public Long create(OrderHistory orderHistory) {
         orderHistoryMapper.insertSelective(orderHistory);
+
+        Order order = new Order();
+        order.setOrderId(orderHistory.getOrderId());
+        order.setUpdateTime(new Date());
+        orderService.update(order);
         Long orderHistoryId = orderHistory.getOrderHistoryId();
         return orderHistoryId;
     }
