@@ -1,6 +1,7 @@
 package com.fsh.jcartadministrationback.service;
 
 import com.fsh.jcartadministrationback.po.Return;
+import com.github.pagehelper.Page;
 
 /**
  * @author Mr.Blake
@@ -8,5 +9,5 @@ import com.fsh.jcartadministrationback.po.Return;
  */
 public interface ReturnService {
 
-    Integer create(Return aReturn);
+    Page<Return> search(Integer pageNum);
 }

@@ -3,6 +3,8 @@ package com.fsh.jcartadministrationback.service.impl;
 import com.fsh.jcartadministrationback.dao.ReturnMapper;
 import com.fsh.jcartadministrationback.po.Return;
 import com.fsh.jcartadministrationback.service.ReturnService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +18,11 @@ public class ReturnServiceimpl implements ReturnService {
     @Autowired
     private ReturnMapper returnMapper;
 
-
     @Override
-    public Integer create(Return aReturn) {
-        returnMapper.insertSelective(aReturn);
-        Integer returnId = aReturn.getReturnId();
-        return returnId;
+    public Page<Return> search(Integer pageNum) {
+
+        PageHelper.startPage(pageNum,10);
+        Page<Return> search = returnMapper.search();
+        return search;
     }
 }
