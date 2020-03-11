@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/return")
+@CrossOrigin
 public class ReturnController {
 
     @Autowired
