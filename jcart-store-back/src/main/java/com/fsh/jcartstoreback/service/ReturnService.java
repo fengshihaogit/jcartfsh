@@ -1,6 +1,7 @@
 package com.fsh.jcartstoreback.service;
 
 import com.fsh.jcartstoreback.po.Return;
+import com.github.pagehelper.Page;
 
 /**
  * @author Mr.Blake
@@ -9,4 +10,6 @@ import com.fsh.jcartstoreback.po.Return;
 public interface ReturnService {
 
     Integer create (Return aReturn);
+
+    Page<Return> getPageByCustomerId(Integer customerId,Integer pageNum);
 }
