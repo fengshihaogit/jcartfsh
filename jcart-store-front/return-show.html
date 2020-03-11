@@ -11,39 +11,37 @@
 
 <body>
     <div id="app">
-        <el-divider>订单信息</el-divider>
-        <el-input v-model="orderId" placeholder="请输入订单Id"></el-input>
-        <el-date-picker v-model="orderTime" type="date" placeholder="选择日期">
-        </el-date-picker>
+        <el-divider>退货基本信息</el-divider>
+        退货Id：{{returnId}} <br>
+        订单Id：{{orderId}}<br>
+        订单时间：{{orderTimestamp}}<br>
+        客户姓名：{{customerName}}<br>
+        手机：{{mobile}}<br>
+        邮箱：{{email}}<br>
+        状态：{{status}}<br>
+        处理方式：{{action}}<br>
         <br>
-
-        <el-input v-model="customerName" placeholder="请输入客户姓名"></el-input>
-        <el-input v-model="mobile" placeholder="请输入手机"></el-input>
-        <el-input v-model="email" placeholder="请输入邮箱"></el-input>
-
-
 
         <el-divider>退货商品信息</el-divider>
-        <el-input v-model="productCode" placeholder="请输入商品代码"></el-input>
-        <el-input v-model="productName" placeholder="请输入商品名称"></el-input>
-        <el-input v-model="quantity" type="number" placeholder="请输入数量"></el-input>
-
-        退货理由：<br>
-        <el-radio v-model="reason" :label="0">发货过期</el-radio>
-        <el-radio v-model="reason" :label="1">订单错误</el-radio>
-        <el-radio v-model="reason" :label="2">收到错误商品</el-radio>
-        <el-radio v-model="reason" :label="3">质量问题</el-radio>
-        <br>
-        <el-input v-model="comment" type="textarea" placeholder="请输入备注"></el-input>
+        商品代号：{{productCode}}<br>
+        商品名称：{{productName}}<br>
+        数量：{{quantity}}<br>
+        退货原因：{{reason}}<br>
+        是否开封：{{opened}}<br>
+        备注：{{comment}}<br>
+        申请时间：{{createTimestamp}}<br>
+        更新时间：{{updateTimestamp}}<br>
         <br>
 
-        <el-checkbox v-model="opened">是否开封</el-checkbox>
-        <br>
-        <br>
-
-        <el-button type="primary" @click="handleApplyClick">申请</el-button>
-
-
+        <el-divider>退货历史</el-divider>
+        <el-table :data="returnHistories" style="width: 100%">
+            <el-table-column prop="timestamp" label="时间">
+            </el-table-column>
+            <el-table-column prop="returnStatus" label="退货状态">
+            </el-table-column>
+            <el-table-column prop="comment" label="备注">
+            </el-table-column>
+        </el-table>
     </div>
 
     <script src="assets/js/axios.min.js"></script>
