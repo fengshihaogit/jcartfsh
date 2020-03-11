@@ -5,17 +5,17 @@ package com.fsh.jcartadministrationback.dto.out;
  * @create 2020-02-25 23:40
  */
 public class ReturnHistoryListOutDTO {
-    private Integer returnHistoryId;
+    private Long returnHistoryId;
     private Long timestamp;
     private Byte returnStatus;
     private String comment;
     private Boolean customerNotified;
 
-    public Integer getReturnHistoryId() {
+    public Long getReturnHistoryId() {
         return returnHistoryId;
     }
 
-    public void setReturnHistoryId(Integer returnHistoryId) {
+    public void setReturnHistoryId(Long returnHistoryId) {
         this.returnHistoryId = returnHistoryId;
     }
 

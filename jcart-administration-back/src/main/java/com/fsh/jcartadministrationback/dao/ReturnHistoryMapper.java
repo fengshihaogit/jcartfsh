@@ -1,7 +1,10 @@
 package com.fsh.jcartadministrationback.dao;
 
 import com.fsh.jcartadministrationback.po.ReturnHistory;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface ReturnHistoryMapper {
@@ -18,5 +21,5 @@ public interface ReturnHistoryMapper {
     int updateByPrimaryKey(ReturnHistory record);
 
     //custom
-
+    List<ReturnHistory> selectByReturnId(@Param("returnId")Integer returnId);
 }
