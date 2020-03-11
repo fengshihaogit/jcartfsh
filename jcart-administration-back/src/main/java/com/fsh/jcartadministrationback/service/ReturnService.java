@@ -10,4 +10,6 @@ import com.github.pagehelper.Page;
 public interface ReturnService {
 
     Page<Return> search(Integer pageNum);
+
+    Return getById(Integer returnId);
 }

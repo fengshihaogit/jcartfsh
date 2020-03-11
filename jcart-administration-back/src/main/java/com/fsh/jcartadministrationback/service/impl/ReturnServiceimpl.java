@@ -25,4 +25,10 @@ public class ReturnServiceimpl implements ReturnService {
         Page<Return> search = returnMapper.search();
         return search;
     }
+
+    @Override
+    public Return getById(Integer returnId) {
+        Return aReturn = returnMapper.selectByPrimaryKey(returnId);
+        return aReturn;
+    }
 }
