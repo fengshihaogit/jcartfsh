@@ -7,7 +7,7 @@ package com.fsh.jcartadministrationback.dto.in;
 public class ReturnHistoryCreateInDTO {
     private Integer returnId;
     private Byte returnStatus;
-    private Boolean customerNotifeid;
+    private Boolean customerNotified;
     private String comment;
 
     public Integer getReturnId() {
@@ -34,11 +34,11 @@ public class ReturnHistoryCreateInDTO {
         this.comment = comment;
     }
 
-    public Boolean getCustomerNotifeid() {
-        return customerNotifeid;
+    public Boolean getCustomerNotified() {
+        return customerNotified;
     }
 
-    public void setCustomerNotifeid(Boolean customerNotifeid) {
-        this.customerNotifeid = customerNotifeid;
+    public void setCustomerNotified(Boolean customerNotified) {
+        this.customerNotified = customerNotified;
     }
 }
