@@ -28,6 +28,12 @@ public class AdministratorServiceimpl implements AdministratorService {
     }
 
     @Override
+    public Administrator getByEmail(String email) {
+        Administrator administrator = administratorMapper.selectByEmail(email);
+        return administrator;
+    }
+
+    @Override
     public Administrator getByUsername(String username) {
         Administrator administrator = administratorMapper.selectByUsername(username);
         return administrator;
