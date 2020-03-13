@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.fsh.jcartadministrationback.dao.CustomerMapper;
 import com.fsh.jcartadministrationback.dao.OrderDetailMapper;
 import com.fsh.jcartadministrationback.dao.OrderMapper;
+import com.fsh.jcartadministrationback.dto.in.OrderSearchInDTO;
 import com.fsh.jcartadministrationback.dto.out.OrderListOutDTO;
 import com.fsh.jcartadministrationback.dto.out.OrderShowOutDTO;
 import com.fsh.jcartadministrationback.po.Customer;
@@ -14,9 +15,11 @@ import com.fsh.jcartadministrationback.service.OrderService;
 import com.fsh.jcartadministrationback.vo.OrderProductVo;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,10 +40,16 @@ public class OrderServiceimpl implements OrderService {
 
 
     @Override
-    public Page<OrderListOutDTO> search(Integer pageNum) {
+    public Page<OrderListOutDTO> search(OrderSearchInDTO orderSearchInDTO,Integer pageNum) {
         PageHelper.startPage(pageNum,10);
 
-        Page<OrderListOutDTO> search = orderMapper.search();
+        Page<OrderListOutDTO> search = orderMapper.search(
+                orderSearchInDTO.getOrderId(),
+                orderSearchInDTO.getStatus(),
+                orderSearchInDTO.getTotalPrice(),
+                orderSearchInDTO.getCustomerName(),
+                orderSearchInDTO.getStartTimestamp() == null ? null : new Date(orderSearchInDTO.getStartTimestamp()),
+                orderSearchInDTO.getEndTimestamp() == null ? null : new Date(orderSearchInDTO.getEndTimestamp()));
 
         return search;
     }
