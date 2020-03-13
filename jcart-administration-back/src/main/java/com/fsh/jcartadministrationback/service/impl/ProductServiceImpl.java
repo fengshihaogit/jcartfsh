@@ -114,7 +114,8 @@ public class ProductServiceImpl implements ProductServiceinter {
                 productSearchInDTO.getProductCode(),
                 productSearchInDTO.getStatus(),
                 productSearchInDTO.getStockQuantity(),
-                productSearchInDTO.getPrice());
+                productSearchInDTO.getPrice(),
+                productSearchInDTO.getProductName());
         return page;
     }
 
