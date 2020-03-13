@@ -1,6 +1,7 @@
 package com.fsh.jcartadministrationback.service;
 
 import com.fsh.jcartadministrationback.dto.in.ProductCreateInDTO;
+import com.fsh.jcartadministrationback.dto.in.ProductSearchInDTO;
 import com.fsh.jcartadministrationback.dto.in.ProductUpdateInDTO;
 import com.fsh.jcartadministrationback.dto.out.ProductListOutDTO;
 import com.fsh.jcartadministrationback.dto.out.ProductShowOutDTO;
@@ -22,7 +23,7 @@ public interface ProductServiceinter {
 
     void batchDelete(List<Integer> productIds);
 
-    Page<ProductListOutDTO> search(Integer pageNum);
+    Page<ProductListOutDTO> search(ProductSearchInDTO productSearchInDTO, Integer pageNum);
 
     ProductShowOutDTO getById(Integer productId);
 }

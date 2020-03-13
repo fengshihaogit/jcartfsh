@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.fsh.jcartadministrationback.dao.ProductDetailMapper;
 import com.fsh.jcartadministrationback.dao.ProductMapper;
 import com.fsh.jcartadministrationback.dto.in.ProductCreateInDTO;
+import com.fsh.jcartadministrationback.dto.in.ProductSearchInDTO;
 import com.fsh.jcartadministrationback.dto.in.ProductUpdateInDTO;
 import com.fsh.jcartadministrationback.dto.out.ProductListOutDTO;
 import com.fsh.jcartadministrationback.dto.out.ProductShowOutDTO;
@@ -105,11 +106,12 @@ public class ProductServiceImpl implements ProductServiceinter {
     }
 
     @Override
-    public Page<ProductListOutDTO> search(Integer pageNum) {
+    public Page<ProductListOutDTO> search(ProductSearchInDTO productSearchInDTO, Integer pageNum) {
 
         PageHelper.startPage(pageNum,10);
 
-        Page<ProductListOutDTO> page = productMapper.search();
+        Page<ProductListOutDTO> page = productMapper.search(productSearchInDTO.getProductCode(),
+                productSearchInDTO.getStatus(),productSearchInDTO.getStockQuantity());
         return page;
     }
 
