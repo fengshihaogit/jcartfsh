@@ -110,8 +110,11 @@ public class ProductServiceImpl implements ProductServiceinter {
 
         PageHelper.startPage(pageNum,10);
 
-        Page<ProductListOutDTO> page = productMapper.search(productSearchInDTO.getProductCode(),
-                productSearchInDTO.getStatus(),productSearchInDTO.getStockQuantity());
+        Page<ProductListOutDTO> page = productMapper.search(
+                productSearchInDTO.getProductCode(),
+                productSearchInDTO.getStatus(),
+                productSearchInDTO.getStockQuantity(),
+                productSearchInDTO.getPrice());
         return page;
     }
 
