@@ -1,5 +1,7 @@
 package com.fsh.jcartadministrationback.dto.in;
 
+import sun.rmi.runtime.Log;
+
 /**
  * @author Mr.Blake
  * @create 2020-02-25 23:22
@@ -11,6 +13,24 @@ public class ReturnSearchInDTO {
     private String productCode;
     private String productName;
     private Byte status;
+    private Long startTimestamp;
+    private Long endTimestemp;
+
+    public Long getStartTimestamp() {
+        return startTimestamp;
+    }
+
+    public void setStartTimestamp(Long startTimestamp) {
+        this.startTimestamp = startTimestamp;
+    }
+
+    public Long getEndTimestemp() {
+        return endTimestemp;
+    }
+
+    public void setEndTimestemp(Long endTimestemp) {
+        this.endTimestemp = endTimestemp;
+    }
 
     public Integer getReturnId() {
         return returnId;

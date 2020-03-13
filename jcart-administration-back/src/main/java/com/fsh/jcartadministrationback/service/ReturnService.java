@@ -1,5 +1,6 @@
 package com.fsh.jcartadministrationback.service;
 
+import com.fsh.jcartadministrationback.dto.in.ReturnSearchInDTO;
 import com.fsh.jcartadministrationback.po.Return;
 import com.github.pagehelper.Page;
 
@@ -9,7 +10,7 @@ import com.github.pagehelper.Page;
  */
 public interface ReturnService {
 
-    Page<Return> search(Integer pageNum);
+    Page<Return> search(ReturnSearchInDTO returnSearchInDTO,Integer pageNum);
 
     Return getById(Integer returnId);
 
