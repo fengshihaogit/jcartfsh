@@ -1,6 +1,7 @@
 package com.fsh.jcartadministrationback.service.impl;
 
 import com.fsh.jcartadministrationback.dao.CustomerMapper;
+import com.fsh.jcartadministrationback.dto.in.CustomerSearchDTO;
 import com.fsh.jcartadministrationback.dto.in.CustomerSetStatusInDTO;
 import com.fsh.jcartadministrationback.po.Customer;
 import com.fsh.jcartadministrationback.service.CustomerService;
@@ -21,10 +22,15 @@ public class CustomerServiceimpl implements CustomerService {
 
 
     @Override
-    public Page<Customer> search(Integer pageNum) {
+    public Page<Customer> search(CustomerSearchDTO customerSearchDTO,Integer pageNum) {
 
         PageHelper.startPage(pageNum,10);
-        Page<Customer> search = customerMapper.search();
+        Page<Customer> search = customerMapper.search(
+                customerSearchDTO.getUsername(),
+                customerSearchDTO.getRealName(),
+                customerSearchDTO.getMobile(),
+                customerSearchDTO.getEmail(),
+                customerSearchDTO.getStatus());
         return search;
     }
 

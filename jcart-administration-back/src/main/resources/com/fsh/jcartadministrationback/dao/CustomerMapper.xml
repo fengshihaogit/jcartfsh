@@ -203,5 +203,22 @@
     select
     <include refid="Base_Column_List" />
     from jcart_customer
+    <where>
+      <if test="username != null and username != ''">
+        username = #{username}
+      </if>
+      <if test="realName != null and realName != ''">
+       and real_name = #{realName}
+      </if>
+      <if test="mobile != null and mobile != ''">
+       and mobile = #{mobile}
+      </if>
+      <if test="email != null and email != ''">
+       and email = #{email}
+      </if>
+      <if test="status != null">
+       and status = #{status}
+      </if>
+    </where>
   </select>
 </mapper>
