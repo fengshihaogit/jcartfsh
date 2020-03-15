@@ -3,10 +3,11 @@ var app = new Vue({
     data: {
         pageInfo: '',
         pageNum: 1,
-        selectedAdministrators:[]
+        selectedAdministrators: [],
+        statuses: ['禁用', '启用']
     },
-    computed:{
-        selectedAdministratorIds(){
+    computed: {
+        selectedAdministratorIds() {
             return this.selectedAdministrators.map(a => a.administratorId);
         }
     },
@@ -14,7 +15,7 @@ var app = new Vue({
         console.log('view mounted')
 
         this.getAdministrators();
-       
+
     },
     methods: {
         handlePageChange(val) {
@@ -23,50 +24,50 @@ var app = new Vue({
             this.pageNum = val;
             this.getAdministrators();
         },
-        handleDelete(index,row){
+        handleDelete(index, row) {
             console.log('delete click')
 
-            if(confirm('确认删除？')){
+            if (confirm('确认删除？')) {
                 this.deleteAdministrator(row.administratorId);
             }
         },
-        handleBatchDeleteClick(){
+        handleBatchDeleteClick() {
             console.log('batch delete click');
-            if(confirm('确认删除？')){
+            if (confirm('确认删除？')) {
                 this.batchdeleteAdministrators();
             }
-            
+
         },
-        handleSelectionChange(val){
-            console.log('selection change',val);
+        handleSelectionChange(val) {
+            console.log('selection change', val);
 
             this.selectedAdministrators = val;
         },
-        deleteAdministrator(administratorId){
-            axios.post('/administrator/delete',administratorId, {
+        deleteAdministrator(administratorId) {
+            axios.post('/administrator/delete', administratorId, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
-              .then(function (response) {
-                console.log(response);
-                alert('删除成功')
-                location.reload();
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+                .then(function (response) {
+                    console.log(response);
+                    alert('删除成功')
+                    location.reload();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         },
-        batchdeleteAdministrators(){
-            axios.post('/administrator/batchDelete',this.selectedAdministratorIds)
-              .then(function (response) {
-                console.log(response);
-                alert('批删成功')
-                location.reload();
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+        batchdeleteAdministrators() {
+            axios.post('/administrator/batchDelete', this.selectedAdministratorIds)
+                .then(function (response) {
+                    console.log(response);
+                    alert('批删成功')
+                    location.reload();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         },
         getAdministrators() {
             axios.get('/administrator/getList', {
