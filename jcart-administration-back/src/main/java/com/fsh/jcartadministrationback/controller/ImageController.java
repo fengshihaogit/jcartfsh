@@ -2,6 +2,7 @@ package com.fsh.jcartadministrationback.controller;
 
 import com.fsh.jcartadministrationback.constant.ClientExceptionConstant;
 import com.fsh.jcartadministrationback.exception.ClientException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +20,9 @@ import java.util.UUID;
 @RequestMapping("/image")
 @CrossOrigin
 public class ImageController {
+
+    @Value("${www.image.baseurl}")
+    private String imageBaseurl;
 
     private List<String> imageExts= Arrays.asList("jpg","jpeg","png");
 
@@ -42,6 +46,6 @@ public class ImageController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return filename;
+        return imageBaseurl + "/" + filename;
     }
 }
