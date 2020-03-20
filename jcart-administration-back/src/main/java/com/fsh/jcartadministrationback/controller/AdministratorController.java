@@ -4,10 +4,10 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.fsh.jcartadministrationback.constant.ClientExceptionConstant;
 import com.fsh.jcartadministrationback.dto.in.*;
 import com.fsh.jcartadministrationback.dto.out.*;
-import com.fsh.jcartadministrationback.enumeration.AdministratorStatus;
 import com.fsh.jcartadministrationback.exception.ClientException;
 import com.fsh.jcartadministrationback.po.Administrator;
 import com.fsh.jcartadministrationback.service.AdministratorService;
+import com.fsh.jcartadministrationback.util.EmailUtil;
 import com.fsh.jcartadministrationback.util.JWTUtil;
 import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +43,7 @@ public class AdministratorController {
     private SecureRandom secureRandom;
 
     @Autowired
-    private JavaMailSender mailSender;
+    private EmailUtil emailUtil;
 
     @Value("${spring.mail.username}")
     private String fromEmail;
@@ -91,18 +91,18 @@ public class AdministratorController {
         administratorService.update(administrator);
     }
     @GetMapping("/getPwdResetCode")
-    public void getPwdResetCode(@RequestParam String email){
+    public void getPwdResetCode(@RequestParam String email) throws ClientException {
+        Administrator administrator = administratorService.getByEmail(email);
+        if (administrator == null){
+            throw new ClientException(ClientExceptionConstant.ADMINISTRATOR_EMAIL_NOT_EXIST_ERRCODE, ClientExceptionConstant.ADMINISTRATOR_EMAIL_NOT_EXIST_ERRMSG);
+        }
         byte[] bytes = secureRandom.generateSeed(3);
         String hex = DatatypeConverter.printHexBinary(bytes);
 
-        SimpleMailMessage message = new SimpleMailMessage();
+        emailUtil.send(fromEmail,email,"jcart管理端管理员密码重置",hex);
 
-        message.setFrom(fromEmail);
-        message.setTo(email);
-        message.setSubject("jcart管理端管理员密码重置");
-        message.setText(hex);
-        mailSender.send(message);
-        emailPwdResetCodeMap.put(email,hex);
+        //todo send messasge to MQ
+        emailPwdResetCodeMap.put(email, hex);
     }
 
     @PostMapping("/resetPwd")
