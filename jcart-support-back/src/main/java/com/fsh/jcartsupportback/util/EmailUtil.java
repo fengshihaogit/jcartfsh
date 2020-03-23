@@ -1,4 +1,4 @@
-package com.fsh.jcartadministrationback.util;
+package com.fsh.jcartsupportback.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,6 @@ public class EmailUtil {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    @Async
     public void  send(String fromEmail,
                       String toEmail,
                       String title,

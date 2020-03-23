@@ -13,7 +13,7 @@ var app = new Vue({
             this.buttonEnabled = false;
 
             setInterval(function () {
-                console.loading('count down')
+                console.log('count down')
                 app.counter--;
             },1000);
 
