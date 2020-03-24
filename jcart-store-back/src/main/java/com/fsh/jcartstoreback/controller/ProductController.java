@@ -10,6 +10,8 @@ import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/product")
 @CrossOrigin
@@ -37,6 +39,11 @@ public class ProductController {
     public ProductShowOutDTO getById(@RequestParam Integer productId){
         ProductShowOutDTO productServiceById = productService.getshowById(productId);
         return productServiceById;
+    }
+
+    @GetMapping("/hot")
+    public List<ProductListOutDTO> hot(){
+        return null;
     }
 
 }
