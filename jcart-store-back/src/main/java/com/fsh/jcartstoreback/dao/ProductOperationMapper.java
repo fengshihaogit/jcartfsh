@@ -1,7 +1,9 @@
 package com.fsh.jcartstoreback.dao;
 
 import com.fsh.jcartstoreback.po.ProductOperation;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ProductOperationMapper {
     int deleteByPrimaryKey(Integer productId);
 
