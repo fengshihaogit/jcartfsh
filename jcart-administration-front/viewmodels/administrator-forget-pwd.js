@@ -4,19 +4,33 @@ var app = new Vue({
         email: '',
         loading: false,
         buttonEnabled : true,
-        counter : 60
+        counter : 0
+    },
+    mounted(){
+        setInterval(function () {
+            console.log('count down')
+            app.counter--;
+            if(app.counter < 0){
+                app.buttonEnabled = true;
+            }
+        },1000);
     },
     methods: {
         handleFindBackPwdClick() {
             console.log('find back pwd click');
             this.loading = true;
             this.buttonEnabled = false;
+<<<<<<< HEAD
 
             setInterval(function () {
                 console.log('count down')
                 app.counter--;
             },1000);
 
+=======
+            this.counter = 60;
+            
+>>>>>>> redis
             this.getPwdResetCode();
         },
         getPwdResetCode() {

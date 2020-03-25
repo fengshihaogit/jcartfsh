@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  * @create 2020-03-23 21:18
  */
 @Service
-@RocketMQMessageListener(topic = "SendPwdResetByEmail", consumerGroup = "jcart-support-group01")
+//@RocketMQMessageListener(topic = "SendPwdResetByEmail", consumerGroup = "jcart-support-group01")
 public class EmailConsumer implements RocketMQListener<EmailEvent> {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
