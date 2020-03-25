@@ -11,6 +11,7 @@ import com.fsh.jcartstoreback.service.ProductOpreationService;
 import com.fsh.jcartstoreback.service.ProductService;
 import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,9 @@ public class ProductController {
 
     @Autowired
     private ProductOpreationService productOpreationService;
+
+    @Autowired
+    private KafkaTemplate kafkaTemplate;
 
     @GetMapping("/search")
     public PageOutDTO<ProductListOutDTO> search(ProductSearchInDTO productSearchInDTO,
@@ -44,7 +48,8 @@ public class ProductController {
     @GetMapping("/getById")
     public ProductShowOutDTO getById(@RequestParam Integer productId){
         ProductShowOutDTO productServiceById = productService.getshowById(productId);
-        productOpreationService.count(productId);
+        kafkaTemplate.send("hotproduct",productId);
+//        productOpreationService.count(productId);
         return productServiceById;
     }
 
