@@ -1,6 +1,7 @@
 package com.fsh.jcartstoreback.service;
 
 import com.fsh.jcartstoreback.dto.in.CustomerRegisterInDTO;
+import com.fsh.jcartstoreback.dto.in.ProductSearchInDTO;
 import com.fsh.jcartstoreback.dto.out.ProductListOutDTO;
 import com.fsh.jcartstoreback.dto.out.ProductShowOutDTO;
 import com.fsh.jcartstoreback.po.Product;
@@ -16,5 +17,5 @@ public interface ProductService {
 
     ProductShowOutDTO getshowById (Integer productId);
 
-    Page<ProductListOutDTO> search(Integer pageNum);
+    Page<ProductListOutDTO> search(ProductSearchInDTO productSearchInDTO,Integer pageNum);
 }

@@ -3,8 +3,10 @@ package com.fsh.jcartstoreback.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.fsh.jcartstoreback.dao.ProductDetailMapper;
 import com.fsh.jcartstoreback.dao.ProductMapper;
+import com.fsh.jcartstoreback.dto.in.ProductSearchInDTO;
 import com.fsh.jcartstoreback.dto.out.ProductListOutDTO;
 import com.fsh.jcartstoreback.dto.out.ProductShowOutDTO;
+import com.fsh.jcartstoreback.enumeration.ProductStatus;
 import com.fsh.jcartstoreback.po.Product;
 import com.fsh.jcartstoreback.po.ProductDetail;
 import com.fsh.jcartstoreback.service.ProductService;
@@ -59,11 +61,10 @@ public class ProductServiceimpl implements ProductService {
     }
 
     @Override
-    public Page<ProductListOutDTO> search(Integer pageNum) {
+    public Page<ProductListOutDTO> search(ProductSearchInDTO productSearchInDTO, Integer pageNum) {
 
         PageHelper.startPage(pageNum,10);
-        Page<ProductListOutDTO> page = productMapper.search();
-
+        Page<ProductListOutDTO> page = productMapper.search(productSearchInDTO.getKeyword(), (byte) ProductStatus.OnSales.ordinal());
         return page;
     }
 

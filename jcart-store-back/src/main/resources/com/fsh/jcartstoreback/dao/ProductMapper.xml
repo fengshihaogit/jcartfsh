@@ -28,7 +28,7 @@
     status, main_pic_url, reword_points, sort_order
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from jcart_product
     where product_id = #{productId,jdbcType=INTEGER}
@@ -175,6 +175,13 @@
     select
     <include refid="Base_Column_List" />
     from jcart_product
-    where status = 1
+    <where>
+      <if test="keyword != null and keyword != ''" >
+        product_name like concat ('%',#{keyword},'%') or product_abstract like concat ('%',#{keyword},'%')
+      </if>
+      <if test="status != null " >
+        and status = #{status}
+      </if>
+    </where>
   </select>
 </mapper>
