@@ -1,18 +1,21 @@
-package com.fsh.jcartstoreback.service;
+package com.fsh.jcartstoreback.service.impl;
 
 import com.fsh.jcartstoreback.dao.ProductOperationMapper;
+import com.fsh.jcartstoreback.dto.out.ProductListOutDTO;
 import com.fsh.jcartstoreback.po.ProductOperation;
+import com.fsh.jcartstoreback.service.ProductOprationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Mr.Blake
  * @create 2020-03-24 22:51
  */
 @Service
-public class ProductOpreationServiceimpl implements ProductOpreationService{
+public class ProductOpreationServiceimpl implements ProductOprationService {
 
     @Autowired
     private ProductOperationMapper productOperationMapper;
@@ -34,5 +37,11 @@ public class ProductOpreationServiceimpl implements ProductOpreationService{
             productOperation.setRecentTime(new Date());
             productOperationMapper.updateByPrimaryKeySelective(productOperation);
         }
+    }
+
+    @Override
+    public List<ProductOperation> selectHotProduct() {
+        List<ProductOperation> productOperations = productOperationMapper.selectHotProduct();
+        return productOperations;
     }
 }
