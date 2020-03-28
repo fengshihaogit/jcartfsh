@@ -20,17 +20,14 @@ var app = new Vue({
             console.log('find back pwd click');
             this.loading = true;
             this.buttonEnabled = false;
-<<<<<<< HEAD
 
             setInterval(function () {
                 console.log('count down')
                 app.counter--;
             },1000);
 
-=======
             this.counter = 60;
             
->>>>>>> redis
             this.getPwdResetCode();
         },
         getPwdResetCode() {

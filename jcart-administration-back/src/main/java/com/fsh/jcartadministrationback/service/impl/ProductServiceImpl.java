@@ -8,6 +8,8 @@ import com.fsh.jcartadministrationback.dto.in.ProductSearchInDTO;
 import com.fsh.jcartadministrationback.dto.in.ProductUpdateInDTO;
 import com.fsh.jcartadministrationback.dto.out.ProductListOutDTO;
 import com.fsh.jcartadministrationback.dto.out.ProductShowOutDTO;
+import com.fsh.jcartadministrationback.es.doc.ProductDoc;
+import com.fsh.jcartadministrationback.es.repo.ProductRepo;
 import com.fsh.jcartadministrationback.po.Product;
 import com.fsh.jcartadministrationback.po.ProductDetail;
 import com.fsh.jcartadministrationback.service.ProductServiceinter;
@@ -33,6 +35,8 @@ public class ProductServiceImpl implements ProductServiceinter {
     @Autowired
     private ProductDetailMapper productDetailMapper;
 
+    @Autowired
+    private ProductRepo productRepo;
 
     @Override
     @Transactional
@@ -60,6 +64,13 @@ public class ProductServiceImpl implements ProductServiceinter {
         productDetail.setOtherPicUrls(JSON.toJSONString(otherPicUrls));
         productDetailMapper.insertSelective(productDetail);
 
+
+        ProductDoc productDoc = new ProductDoc();
+        productDoc.setProductId(productId);
+        productDoc.setProductName(productCreateInDTO.getProductName());
+        productDoc.setProductAbstract(productCreateInDTO.getProductAbstract());
+        productDoc.setProductCode(productCreateInDTO.getProductCode());
+        productRepo.save(productDoc);
 
 
         return productId;
